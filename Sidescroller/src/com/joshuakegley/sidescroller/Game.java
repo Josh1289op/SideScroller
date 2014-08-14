@@ -29,12 +29,12 @@ import com.joshuakegley.sidescroller.utils.ResourceLoader;
 /**
  * @Class Game
  */
+@SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private static JFrame frame = new JFrame();
 	
 	public static final int WIDTH = 640;
@@ -48,7 +48,7 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Thread thread;
 	private Renderer gfx;
-	public Menu menu;
+	private Menu menu;
 	
 	
 	
@@ -57,13 +57,18 @@ public class Game extends Canvas implements Runnable {
 		return game;  
 	}
 	
+	public Menu getMenu(){
+		return menu;
+	}
 	
 	public void init() {
 		ResourceLoader.loadImages();
 		ResourceLoader.loadFonts();
 		menu = new Menu();
 		gfx = new Renderer();
-		this.addMouseListener(new MouseInput());
+		MouseInput mouse = new MouseInput();
+		this.addMouseListener(mouse);
+		this.addMouseMotionListener(mouse);
 	}
 	
 	public void tick() {
