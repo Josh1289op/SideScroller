@@ -22,8 +22,10 @@ import javax.swing.JFrame;
 import com.joshuakegley.sidescroller.enums.GameState;
 import com.joshuakegley.sidescroller.gfx.Renderer;
 import com.joshuakegley.sidescroller.input.MouseInput;
+import com.joshuakegley.sidescroller.libs.Audio;
 import com.joshuakegley.sidescroller.libs.Reference;
 import com.joshuakegley.sidescroller.screens.Menu;
+import com.joshuakegley.sidescroller.utils.AudioPlayer;
 import com.joshuakegley.sidescroller.utils.ResourceLoader;
 
 /**
@@ -62,13 +64,16 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void init() {
-		ResourceLoader.loadImages();
-		ResourceLoader.loadFonts();
+		ResourceLoader.loadImages(); //Loads our images and sprites
+		ResourceLoader.loadFonts(); //Loads our fonts
+		ResourceLoader.loadSounds(); //Loads Sounds
 		menu = new Menu();
 		gfx = new Renderer();
 		MouseInput mouse = new MouseInput();
 		this.addMouseListener(mouse);
 		this.addMouseMotionListener(mouse);
+		
+		AudioPlayer.playMusic(Audio.MUSIC_THEME);
 	}
 	
 	public void tick() {

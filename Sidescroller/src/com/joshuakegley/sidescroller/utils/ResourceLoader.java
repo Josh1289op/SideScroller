@@ -9,6 +9,7 @@ package com.joshuakegley.sidescroller.utils;
 
 import java.io.IOException;
 
+import com.joshuakegley.sidescroller.libs.Audio;
 import com.joshuakegley.sidescroller.libs.Fonts;
 import com.joshuakegley.sidescroller.libs.Images;
 
@@ -32,6 +33,12 @@ public class ResourceLoader {
 	public static void loadFonts(){
 		Fonts.addFont(new Fonts("Lobster.ttf"));
 		
+	}
+	
+	public static void loadSounds(){
+		AudioPlayer.addSound(Audio.SOUND_BUTTONCLICK, "button_click.wav");
+		
+		AudioPlayer.addMusic(Audio.MUSIC_THEME, "theme.ogg");
 	}
 
 }

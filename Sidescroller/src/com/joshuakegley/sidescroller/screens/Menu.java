@@ -11,8 +11,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import com.joshuakegley.sidescroller.Game;
+import com.joshuakegley.sidescroller.libs.Audio;
 import com.joshuakegley.sidescroller.libs.Images;
 import com.joshuakegley.sidescroller.libs.Reference;
+import com.joshuakegley.sidescroller.utils.AudioPlayer;
 import com.joshuakegley.sidescroller.utils.Button;
 
 /**
@@ -45,6 +47,7 @@ public class Menu {
 		Font Lobster = new Font("Lobster", Font.BOLD, 45); 
 		g.setFont(Lobster);
 		
+
 		play.drawButton(g, 50);
 		options.drawButton(g, 25);
 		quit.drawButton(g, 50);

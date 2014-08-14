@@ -14,6 +14,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import com.joshuakegley.sidescroller.input.MouseInput;
+import com.joshuakegley.sidescroller.libs.Audio;
 import com.joshuakegley.sidescroller.libs.Reference;
 
 /**
@@ -23,6 +24,7 @@ import com.joshuakegley.sidescroller.libs.Reference;
 public class Button extends Rectangle {
 
 	private String text;
+	private int counter;
 	
 	/**
 	 * Creates a default button/rectangle
@@ -91,8 +93,16 @@ public class Button extends Rectangle {
 			
 			if(MouseInput.MOUSE.intersects(this) && MouseInput.MOUSE != null){
 				g.setColor(Color.BLACK);
+				if(counter == 0){
+					AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
+					counter = 1;
+				}else{
+					
+				}
+				
 			}else {
 				g.setColor(Color.WHITE);	
+				counter = 0;
 			}
 			
 			if(!MouseInput.pressed && MouseInput.MOUSE.intersects(this)){
