@@ -4,6 +4,9 @@
  *@Project: Sidescroller
  *
  *@Class: Game
+ *
+ *This game is just a tester game to figure out things, it isn't anything amazing
+ *or revolutionary! 
  */
 package com.joshuakegley.sidescroller;
 
