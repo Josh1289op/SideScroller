@@ -140,6 +140,7 @@ public class Game extends Canvas implements Runnable {
 			lastTime = currentTime;
 			
 			if(delta >= 1){
+				tick();
 				ticks++;
 				delta--;
 			}

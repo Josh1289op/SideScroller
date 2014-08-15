@@ -17,10 +17,10 @@ import com.joshuakegley.sidescroller.gfx.Texture;
 public abstract class CoreObject {
 	
 	protected int x, y, velX, velY;
-	protected long id; 
+	protected int id; 
 	protected Texture tex;
 	
-	public CoreObject(int x, int y, long id, Texture tex){
+	public CoreObject(int x, int y, int id, Texture tex){
 		this.x = x;
 		this.y = y;
 		this.id = id;
