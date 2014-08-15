@@ -19,6 +19,6 @@ public class Identities {
 	 * 
 	 */
 	public static int BLOCK_STONE = 10;
-	
+	public static int BLOCK_METAL = 11;
 	
 }

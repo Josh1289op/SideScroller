@@ -13,6 +13,8 @@ public class Block extends CoreObject {
 	public Block(int x, int y, int id, Textures tex, BufferedImage image) {
 		super(x, y, id, tex);
 		this.image = image;
+		this.setSize(32, 32);
+		
 		
 	}
 

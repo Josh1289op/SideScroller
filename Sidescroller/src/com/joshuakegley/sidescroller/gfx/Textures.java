@@ -32,8 +32,8 @@ public class Textures {
 	}
 	
 	private void initTextures(){
-		blockStone = sheetTest.getSprite(5, 2);
-		blockMetal = sheetTest.getSprite(2, 1);
+		blockStone = sheetTest.getSprite(1, 1);
+		blockMetal = sheetTest.getSprite(6, 1);
 		
 	}
 	

@@ -87,11 +87,15 @@ public class Game extends Canvas implements Runnable {
 		int x = 0;
 		for(int i = 1; i <= 20; i++){
 			Controller.addObject(new Block(x, HEIGHT - 64, Identities.BLOCK_STONE, tex, tex.blockStone));
+//			Controller.addObject(new Block(x, HEIGHT - 250, Identities.BLOCK_METAL, tex, tex.blockMetal));
 			x += 32;
 		}
-		
+		Controller.addObject(new Block(400, HEIGHT - 128, Identities.BLOCK_METAL, tex, tex.blockMetal));
+		Controller.addObject(new Block(400, HEIGHT - (128+32), Identities.BLOCK_METAL, tex, tex.blockMetal));
+		Controller.addObject(new Block(300, HEIGHT - 300, Identities.BLOCK_METAL, tex, tex.blockMetal));
+
 		//PLAYER OBJECT!
-		Controller.addObject(new Player(100,100, Identities.PLAYER, tex));
+		Controller.addObject(new Player(100, HEIGHT - 220, Identities.PLAYER, tex));
 		this.addKeyListener(new KeyInput());
 		
 		AudioPlayer.playMusic(Audio.MUSIC_THEME);//plays theme

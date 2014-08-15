@@ -20,8 +20,9 @@ public abstract class CoreObject {
 	protected int x, y, velX, velY;
 	protected int id; 
 	
-	protected int width = 32;
-	protected int height = 32;
+	protected int width;
+
+	protected int height;
 	
 	protected Textures tex;
 	
@@ -37,11 +38,11 @@ public abstract class CoreObject {
 
 	
 	public Rectangle getTopBounds(){	
-		return new Rectangle(x, y, width, 6);
+		return new Rectangle(x, y, width, 8);
 	}
 	
 	public Rectangle getBottomBounds(){
-		return new Rectangle(x, y + (height - 6), width, 6);
+		return new Rectangle(x, y + (height - 6), width, 8);
 	}
 	
 	public Rectangle getRightBounds(){
@@ -84,12 +85,27 @@ public abstract class CoreObject {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	
 
 	public int getHeight() {
 		return height;
 	}
 
 	public void setHeight(int height) {
+		this.height = height;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public void setSize(int width, int height){
+		this.width = width;
 		this.height = height;
 	}
 

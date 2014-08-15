@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import com.joshuakegley.sidescroller.Controller;
 import com.joshuakegley.sidescroller.core.CoreObject;
 import com.joshuakegley.sidescroller.gfx.Textures;
-import com.joshuakegley.sidescroller.libs.Identities;
 import com.joshuakegley.sidescroller.objects.Block;
 
 /**
@@ -24,7 +23,6 @@ public class Player extends CoreObject {
 
 	private static ArrayList<CoreObject> blocks = Controller.getObjects();
 	//
-	private Block block;
 	//gravity constant
 	private int gravity = 1;
 	//is the player falling?
@@ -37,8 +35,7 @@ public class Player extends CoreObject {
 
 	public Player(int x, int y, int id, Textures tex) {
 		super(x, y, id, tex);
-		this.width = 32;
-		this.height = 70;
+		this.setSize(32, 70);
 	}
 
 
@@ -63,12 +60,27 @@ public class Player extends CoreObject {
 	private void checkCollision(){
 		
 		for(CoreObject obj : blocks){
-			if(obj.getId() == Identities.BLOCK_STONE){
-				block = (Block) obj;
-				if(getBottomBounds().intersects(block.getTopBounds())){
+			if(obj instanceof Block){
+				if(getBottomBounds().intersects(obj.getTopBounds())){
 					velY = 0;
-					y = block.getY() - height;
+					y = obj.getY() - height;
 					jumping = false;
+				}
+				if(getTopBounds().intersects(obj.getBottomBounds())){
+					velY = 0;
+					y = obj.getY() + obj.getHeight();
+				}
+				if(getBottomBounds().intersects(obj.getTopBounds())){
+					
+				}
+				if(getRightBounds().intersects(obj.getLeftBounds())){
+					velX = 0;
+					x = obj.getX() - width;
+					
+				}
+				if(getLeftBounds().intersects(obj.getRightBounds())){
+					velX = 0;
+					x = obj.getX() + obj.getWidth();
 				}
 			}
 		}
