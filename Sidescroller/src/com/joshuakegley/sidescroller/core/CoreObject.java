@@ -18,6 +18,10 @@ public abstract class CoreObject {
 	
 	protected int x, y, velX, velY;
 	protected int id; 
+	
+	protected int width;
+	protected int height;
+	
 	protected Texture tex;
 	
 	public CoreObject(int x, int y, int id, Texture tex){
@@ -25,7 +29,19 @@ public abstract class CoreObject {
 		this.y = y;
 		this.id = id;
 		this.tex = tex;
+		width = 32;
+		height = 32;
 	}
+	
+	public CoreObject(int x, int y, int width, int height, int id, Texture tex){
+		this.x = x;
+		this.y = y;
+		this.id = id;
+		this.tex = tex;
+		this.width = width;
+		this.height = height;
+	}
+	
 	
 	public abstract void tick();
 	public abstract void render(Graphics g);

@@ -29,6 +29,7 @@ import com.joshuakegley.sidescroller.input.MouseInput;
 import com.joshuakegley.sidescroller.libs.Audio;
 import com.joshuakegley.sidescroller.libs.Identities;
 import com.joshuakegley.sidescroller.libs.Reference;
+import com.joshuakegley.sidescroller.objects.Block;
 import com.joshuakegley.sidescroller.screens.Menu;
 import com.joshuakegley.sidescroller.utils.AudioPlayer;
 import com.joshuakegley.sidescroller.utils.ResourceLoader;
@@ -83,11 +84,18 @@ public class Game extends Canvas implements Runnable {
 		this.addMouseListener(mouse);
 		this.addMouseMotionListener(mouse);
 		
+		int x = 0;
+		for(int i = 1; i <= 20; i++){
+			Controller.addObject(new Block(x, HEIGHT - 64, Identities.BLOCK_STONE, tex, tex.blockStone));
+			x += 32;
+		}
+		
 		//PLAYER OBJECT!
-		Controller.addObject(new Player(100,100, Identities.PLAYER, tex));
+		Controller.addObject(new Player(100,100,30, 70, Identities.PLAYER, tex));
 		this.addKeyListener(new KeyInput());
 		
 		AudioPlayer.playMusic(Audio.MUSIC_THEME);//plays theme
+		
 	}
 	
 	public void tick() {

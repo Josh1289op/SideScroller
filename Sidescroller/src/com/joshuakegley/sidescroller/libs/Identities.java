@@ -14,4 +14,11 @@ public class Identities {
 
 	public static int PLAYER = 1;
 	
+	/*
+	 * 
+	 * 
+	 */
+	public static int BLOCK_STONE = 10;
+	
+	
 }
