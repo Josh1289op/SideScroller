@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import com.joshuakegley.sidescroller.Game;
 import com.joshuakegley.sidescroller.enums.GameState;
 import com.joshuakegley.sidescroller.libs.Audio;
+import com.joshuakegley.sidescroller.screens.Menu;
 import com.joshuakegley.sidescroller.utils.AudioPlayer;
 
 /**
@@ -37,6 +38,8 @@ public class MouseInput extends MouseAdapter {
 	public static Rectangle MOUSE = new Rectangle(1, 1, 1, 1);
 	
 	
+	private Menu menu = Game.getInstance().getMenu();
+	
 	
 	@Override
 	/**
@@ -51,13 +54,13 @@ public class MouseInput extends MouseAdapter {
 			case GAME:
 				break;
 			case MENU:
-				if(rect.intersects(Game.getInstance().getMenu().play)){
+				if(rect.intersects(menu.play)){
 					AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
 					Game.state = GameState.GAME;
-				}else if(rect.intersects(Game.getInstance().getMenu().options)){
+				}else if(rect.intersects(menu.options)){
 					AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
 					Game.state = GameState.GAME;
-				}else if(rect.intersects(Game.getInstance().getMenu().quit)){
+				}else if(rect.intersects(menu.quit)){
 					AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
 					System.exit(1);
 				}
@@ -87,10 +90,10 @@ public class MouseInput extends MouseAdapter {
 		case GAME:
 			break;
 		case MENU:
-			if((MOUSE.intersects(Game.getInstance().getMenu().play) || MOUSE.intersects(Game.getInstance().getMenu().options) || MOUSE.intersects(Game.getInstance().getMenu().quit)) && !AudioPlayer.hasPlayedAudio){
+			if((MOUSE.intersects(menu.play) || MOUSE.intersects(menu.options) || MOUSE.intersects(menu.quit)) && !AudioPlayer.hasPlayedAudio){
 				AudioPlayer.hasPlayedAudio = true;
 				AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
-			}else if(!(MOUSE.intersects(Game.getInstance().getMenu().play) || MOUSE.intersects(Game.getInstance().getMenu().options) || MOUSE.intersects(Game.getInstance().getMenu().quit)) && AudioPlayer.hasPlayedAudio){
+			}else if(!(MOUSE.intersects(menu.play) || MOUSE.intersects(menu.options) || MOUSE.intersects(menu.quit)) && AudioPlayer.hasPlayedAudio){
 				AudioPlayer.hasPlayedAudio = false;
 			}
 			break;

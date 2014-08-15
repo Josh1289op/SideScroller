@@ -9,6 +9,8 @@ package com.joshuakegley.sidescroller.core;
 
 import java.awt.Graphics;
 
+import com.joshuakegley.sidescroller.gfx.Texture;
+
 /**
  * @Class CoreObject
  */
@@ -16,11 +18,13 @@ public abstract class CoreObject {
 	
 	protected int x, y, velX, velY;
 	protected long id; 
+	protected Texture tex;
 	
-	public CoreObject(int x, int y, long id){
+	public CoreObject(int x, int y, long id, Texture tex){
 		this.x = x;
 		this.y = y;
 		this.id = id;
+		this.tex = tex;
 	}
 	
 	public abstract void tick();
@@ -70,6 +74,9 @@ public abstract class CoreObject {
 		this.velX = velX;
 	}
 
+	public int getVelX() {
+		return velX;
+	}
 	/**
 	 * @param velY the velY to set
 	 */
@@ -77,6 +84,9 @@ public abstract class CoreObject {
 		this.velY = velY;
 	}
 	
+	public int getVelY() {
+		return velY;
+	}	
 	
 
 }

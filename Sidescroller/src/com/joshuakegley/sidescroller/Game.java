@@ -20,10 +20,14 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import com.joshuakegley.sidescroller.entity.Player;
 import com.joshuakegley.sidescroller.enums.GameState;
 import com.joshuakegley.sidescroller.gfx.Renderer;
+import com.joshuakegley.sidescroller.gfx.Texture;
+import com.joshuakegley.sidescroller.input.KeyInput;
 import com.joshuakegley.sidescroller.input.MouseInput;
 import com.joshuakegley.sidescroller.libs.Audio;
+import com.joshuakegley.sidescroller.libs.Identities;
 import com.joshuakegley.sidescroller.libs.Reference;
 import com.joshuakegley.sidescroller.screens.Menu;
 import com.joshuakegley.sidescroller.utils.AudioPlayer;
@@ -48,12 +52,12 @@ public class Game extends Canvas implements Runnable {
 	
 	
 	
-	private boolean running = false;
-	private Thread thread;
-	private Renderer gfx;
-	private Menu menu;
-	
-	
+	private boolean running = false; // by default, I need this to be false so we do not exit our start method right away.
+	private Thread thread; //Thread that controls game loop
+	private Renderer gfx; // Render Object
+	private Menu menu; //Menu Object
+	private Controller controller = new Controller(); //Control all game objects
+	private Texture tex;
 	
 	
 	public static Game getInstance(){
@@ -64,22 +68,33 @@ public class Game extends Canvas implements Runnable {
 		return menu;
 	}
 	
+	public Controller getController(){
+		return controller;
+	}
+	
 	public void init() {
 		ResourceLoader.loadImages(); //Loads our images and sprites
 		ResourceLoader.loadFonts(); //Loads our fonts
 		ResourceLoader.loadSounds(); //Loads Sounds
+		tex = new Texture();
 		menu = new Menu();
 		gfx = new Renderer();
 		MouseInput mouse = new MouseInput();
 		this.addMouseListener(mouse);
 		this.addMouseMotionListener(mouse);
 		
-		AudioPlayer.playMusic(Audio.MUSIC_THEME);
+		//PLAYER OBJECT!
+		Controller.addObject(new Player(100,100, Identities.PLAYER, tex));
+		this.addKeyListener(new KeyInput());
+		
+		AudioPlayer.playMusic(Audio.MUSIC_THEME);//plays theme
 	}
 	
 	public void tick() {
-		
-	}
+		if(state == GameState.GAME){
+			controller.tick();
+		}
+	}	
 	
 	
 	public void render() {
@@ -102,8 +117,9 @@ public class Game extends Canvas implements Runnable {
 		gfx.renderBackground(g);
 		gfx.renderForeground(g);
 		
-		g.dispose();
-		bs.show();
+		//////////////////////////////////////////////////////////////
+		g.dispose();//Disposes our graphics context(if we did not do this, animations would not properly work, it would also eat up memory)
+		bs.show(); //Shows graphics were just disposed of
 	}
 	
 	

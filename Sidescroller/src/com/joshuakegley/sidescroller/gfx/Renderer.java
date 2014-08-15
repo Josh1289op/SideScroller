@@ -43,6 +43,19 @@ public class Renderer {
 	
 	public void renderForeground(Graphics g){
 		//Stuff that effects gameplay
+		switch(Game.state){
+		case GAME:
+			Game.getInstance().getController().render(g);
+			break;
+		case MENU:
+			break;
+		case OPTION:
+			break;
+		case PAUSE:
+			break;
+		default:
+			break;
 		
+		}
 	}
 }

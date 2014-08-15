@@ -16,4 +16,13 @@ public class Images {
 
 
 	public static BufferedImage title;
+	
+	/*
+	 * Sprite sheets
+	 */
+	public static BufferedImage spritesheetTest;
+	
+
+	
+	
 }

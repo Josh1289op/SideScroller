@@ -24,6 +24,7 @@ public class ResourceLoader {
 		
 		try{
 			Images.title = imageLoader.loadImage("logo.png");
+			Images.spritesheetTest = imageLoader.loadImage("test_spritesheet.png");
 		} catch(IOException e){
 			e.printStackTrace();
 		}
