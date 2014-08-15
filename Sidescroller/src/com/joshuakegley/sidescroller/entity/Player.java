@@ -24,7 +24,7 @@ public class Player extends CoreObject {
 	private static ArrayList<CoreObject> gameObjects = Game.getInstance().getController().getObjects();
 	//
 	//gravity constant
-	private float gravity = 1;
+	private float gravity = 0.55f;
 	//is the player falling?
 	private boolean falling = true;
 	//is the player jumping?

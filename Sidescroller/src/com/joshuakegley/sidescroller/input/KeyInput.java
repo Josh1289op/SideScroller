@@ -38,15 +38,15 @@ public class KeyInput extends KeyAdapter {
 		
 		switch(Game.state){
 		case GAME:
-			if(key == KeyEvent.VK_W && !player.isJumping()){
-				player.setVelY(-23);
+			if((key == KeyEvent.VK_W || key == KeyEvent.VK_UP || key == KeyEvent.VK_SPACE) && !player.isJumping()){
+				player.setVelY(-13);
 				player.setJumping(true);
 			}
-			if(key == KeyEvent.VK_A){
+			if((key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT)){
 				player.setVelX(-5);
 				keyDown[0] = true;
 			}
-			if(key == KeyEvent.VK_D){
+			if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
 				player.setVelX(5);
 				keyDown[1] = true;
 			}
@@ -72,17 +72,17 @@ public class KeyInput extends KeyAdapter {
 		
 		switch(Game.state){
 		case GAME:
-			if(key == KeyEvent.VK_W){
+			if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP || key == KeyEvent.VK_SPACE){
 				player.setVelY(0);
 			}
 			//DOWN MOVEMENT REMOVED, NO DOWN NEEDED2
 			//if(key == KeyEvent.VK_S){
 			//	player.setVelY(0);
 			//}
-			if(key == KeyEvent.VK_A){
+			if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){
 				keyDown[0] = false;
 			}
-			if(key == KeyEvent.VK_D){
+			if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
 				keyDown[1] = false;
 			}
 			if(keyDown[0] && !keyDown[1]){
