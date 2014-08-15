@@ -11,7 +11,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import com.joshuakegley.sidescroller.Controller;
+import com.joshuakegley.sidescroller.Game;
 import com.joshuakegley.sidescroller.core.CoreObject;
 import com.joshuakegley.sidescroller.gfx.Textures;
 import com.joshuakegley.sidescroller.objects.Block;
@@ -21,10 +21,10 @@ import com.joshuakegley.sidescroller.objects.Block;
  */
 public class Player extends CoreObject {
 
-	private static ArrayList<CoreObject> blocks = Controller.getObjects();
+	private static ArrayList<CoreObject> gameObjects = Game.getInstance().getController().getObjects();
 	//
 	//gravity constant
-	private int gravity = 1;
+	private float gravity = 1;
 	//is the player falling?
 	private boolean falling = true;
 	//is the player jumping?
@@ -33,7 +33,7 @@ public class Player extends CoreObject {
 	
 
 
-	public Player(int x, int y, int id, Textures tex) {
+	public Player(float x, float y, int id, Textures tex) {
 		super(x, y, id, tex);
 		this.setSize(32, 70);
 	}
@@ -54,12 +54,12 @@ public class Player extends CoreObject {
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(x, y, width, height);
+		g.fillRect((int) x, (int) y, width, height);
 	}
 
 	private void checkCollision(){
 		
-		for(CoreObject obj : blocks){
+		for(CoreObject obj : gameObjects){
 			if(obj instanceof Block){
 				if(getBottomBounds().intersects(obj.getTopBounds())){
 					velY = 0;
@@ -67,7 +67,7 @@ public class Player extends CoreObject {
 					jumping = false;
 				}
 				if(getTopBounds().intersects(obj.getBottomBounds())){
-					velY = 0;
+					fall();
 					y = obj.getY() + obj.getHeight();
 				}
 				if(getBottomBounds().intersects(obj.getTopBounds())){

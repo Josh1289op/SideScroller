@@ -13,12 +13,7 @@ package com.joshuakegley.sidescroller;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
-
-import javax.swing.JFrame;
 
 import com.joshuakegley.sidescroller.entity.Player;
 import com.joshuakegley.sidescroller.enums.GameState;
@@ -28,7 +23,6 @@ import com.joshuakegley.sidescroller.input.KeyInput;
 import com.joshuakegley.sidescroller.input.MouseInput;
 import com.joshuakegley.sidescroller.libs.Audio;
 import com.joshuakegley.sidescroller.libs.Identities;
-import com.joshuakegley.sidescroller.libs.Reference;
 import com.joshuakegley.sidescroller.objects.Block;
 import com.joshuakegley.sidescroller.screens.Menu;
 import com.joshuakegley.sidescroller.utils.AudioPlayer;
@@ -43,8 +37,6 @@ public class Game extends Canvas implements Runnable {
 	/**
 	 * 
 	 */
-	private static JFrame frame = new JFrame();
-	
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = WIDTH / 4 * 3;
 	public static final String TITLE = "Sidescroller";
@@ -86,16 +78,16 @@ public class Game extends Canvas implements Runnable {
 		
 		int x = 0;
 		for(int i = 1; i <= 20; i++){
-			Controller.addObject(new Block(x, HEIGHT - 64, Identities.BLOCK_STONE, tex, tex.blockStone));
+			controller.addObject(new Block(x, HEIGHT - 64, Identities.BLOCK_STONE, tex.blockStone));
 //			Controller.addObject(new Block(x, HEIGHT - 250, Identities.BLOCK_METAL, tex, tex.blockMetal));
 			x += 32;
 		}
-		Controller.addObject(new Block(400, HEIGHT - 128, Identities.BLOCK_METAL, tex, tex.blockMetal));
-		Controller.addObject(new Block(400, HEIGHT - (128+32), Identities.BLOCK_METAL, tex, tex.blockMetal));
-		Controller.addObject(new Block(300, HEIGHT - 300, Identities.BLOCK_METAL, tex, tex.blockMetal));
+		controller.addObject(new Block(400, HEIGHT - 128, Identities.BLOCK_METAL, tex.blockMetal));
+		controller.addObject(new Block(400, HEIGHT - (128+32), Identities.BLOCK_METAL, tex.blockMetal));
+		controller.addObject(new Block(300, HEIGHT - 300, Identities.BLOCK_METAL, tex.blockMetal));
 
 		//PLAYER OBJECT!
-		Controller.addObject(new Player(100, HEIGHT - 220, Identities.PLAYER, tex));
+		controller.addObject(new Player(100, HEIGHT - 220, Identities.PLAYER, tex));
 		this.addKeyListener(new KeyInput());
 		
 		AudioPlayer.playMusic(Audio.MUSIC_THEME);//plays theme
@@ -164,7 +156,7 @@ public class Game extends Canvas implements Runnable {
 				timer += 1000;
 				System.out.println(ticks + " Ticks, FPS: " + frames);
 				//FPS in Title Bar
-				//frame.setTitle(TITLE + "        Ticks: " + ticks + "    FPS: " + frames);
+				Window.setTitle(TITLE + "    FPS: " + frames);
 				ticks = 0;
 				frames = 0;
 				
@@ -175,25 +167,9 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public static void main(String args[]){
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		//Setting image icon to image of 32x32.png
-		Image icon = toolkit.getImage(Reference.RESOURCE_LOCATION + "img/32x32.png");
-		//Setting image cursor to image of cursor
-		Image cursor = toolkit.getImage(Reference.RESOURCE_LOCATION + "img/cursor.gif");
-		frame.add(game);
-		frame.setTitle(TITLE);
-		frame.setIconImage(icon);
-		/**
-		 * Replacing Cursor with new Frame Cursor
-		 */
-		frame.setCursor(toolkit.createCustomCursor(cursor, new Point(frame.getX(), frame.getY()), "cursor"));
-		frame.setSize(WIDTH, HEIGHT);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setFocusable(true);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setVisible(true);
-		frame.pack();
+		Window.initWindow(TITLE);
+		Window.addGame(game);
+		Window.createWindow();
 		game.start();
 
 	}

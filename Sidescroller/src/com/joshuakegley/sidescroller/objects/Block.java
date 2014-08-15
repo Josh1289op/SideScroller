@@ -4,15 +4,11 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import com.joshuakegley.sidescroller.core.CoreObject;
-import com.joshuakegley.sidescroller.gfx.Textures;
 
 public class Block extends CoreObject {
 
-	private BufferedImage image;
-	
-	public Block(int x, int y, int id, Textures tex, BufferedImage image) {
-		super(x, y, id, tex);
-		this.image = image;
+	public Block(float x, float y, int id, BufferedImage image) {
+		super(x, y, id, image);
 		this.setSize(32, 32);
 		
 		
@@ -25,7 +21,7 @@ public class Block extends CoreObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(image, x, y, null);
+		g.drawImage(image,(int) x,(int) y, null);
 	}
 
 

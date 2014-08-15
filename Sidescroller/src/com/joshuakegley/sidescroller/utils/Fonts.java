@@ -5,12 +5,14 @@
  *
  *@Class: Fonts
  */
-package com.joshuakegley.sidescroller.libs;
+package com.joshuakegley.sidescroller.utils;
 
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.util.ArrayList;
+
+import com.joshuakegley.sidescroller.libs.Reference;
 
 /**
  * @Class Fonts

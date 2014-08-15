@@ -10,7 +10,6 @@ package com.joshuakegley.sidescroller.input;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import com.joshuakegley.sidescroller.Controller;
 import com.joshuakegley.sidescroller.Game;
 import com.joshuakegley.sidescroller.core.CoreObject;
 import com.joshuakegley.sidescroller.entity.Player;
@@ -26,7 +25,7 @@ public class KeyInput extends KeyAdapter {
 	private boolean[] keyDown = new boolean[2];
 	
 	public KeyInput(){
-		for(CoreObject obj : Controller.getObjects()){    //Runs through the entire array list (for each CoreObject in the array list, do this)
+		for(CoreObject obj : Game.getInstance().getController().getObjects()){    //Runs through the entire array list (for each CoreObject in the array list, do this)
 			if(obj.getId() == Identities.PLAYER)          //If the objects ID is equal to Identities.PLAYER (1) then do this
 				player = (Player) obj;                    //Sets our player attribute(above) to the object in our Controller
 		}

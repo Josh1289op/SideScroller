@@ -17,7 +17,7 @@ import com.joshuakegley.sidescroller.core.CoreObject;
  */
 public class Controller {
 
-	private static ArrayList<CoreObject> objects = new ArrayList<CoreObject>();
+	private ArrayList<CoreObject> objects = new ArrayList<CoreObject>();
 	
 	public void tick(){
 		for(CoreObject obj : objects){
@@ -31,15 +31,15 @@ public class Controller {
 		}
 	}
 
-	public static void addObject(CoreObject instance){
+	public void addObject(CoreObject instance){
 		objects.add(instance);
 	}
 	
-	public static void removeObject(CoreObject instance){
+	public void removeObject(CoreObject instance){
 		objects.remove(instance);
 	}
 	
-	public static ArrayList<CoreObject> getObjects(){
+	public ArrayList<CoreObject> getObjects(){
 		return objects;
 	}
 }

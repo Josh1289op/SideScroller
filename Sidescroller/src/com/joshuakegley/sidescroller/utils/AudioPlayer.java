@@ -60,7 +60,8 @@ public class AudioPlayer {
 	}
 	
 	public static void playMusic(String key){
-		musicMap.get(key).loop();
+		musicMap.get(key).loop(0.5f, 1f);
 	}
+	
 	
 }
