@@ -13,8 +13,6 @@ import java.awt.event.MouseEvent;
 
 import com.joshuakegley.sidescroller.Game;
 import com.joshuakegley.sidescroller.enums.GameState;
-import com.joshuakegley.sidescroller.libs.Audio;
-import com.joshuakegley.sidescroller.utils.AudioPlayer;
 
 /**
  * @Class MouseInput
@@ -53,7 +51,8 @@ public class MouseInput extends MouseAdapter {
 			case MENU:
 				if(rect.intersects(Game.getInstance().getMenu().play)){
 					Game.state = GameState.GAME;
-					
+				}else if(rect.intersects(Game.getInstance().getMenu().options)){
+					Game.state = GameState.GAME;
 				}else if(rect.intersects(Game.getInstance().getMenu().quit)){
 					System.exit(1);
 				}

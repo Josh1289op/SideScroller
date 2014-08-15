@@ -14,6 +14,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
@@ -145,10 +146,18 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public static void main(String args[]){
-		Image icon = Toolkit.getDefaultToolkit().getImage(Reference.RESOURCE_LOCATION + "img/32x32.png");
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		//Setting image icon to image of 32x32.png
+		Image icon = toolkit.getImage(Reference.RESOURCE_LOCATION + "img/32x32.png");
+		//Setting image cursor to image of cursor
+		Image cursor = toolkit.getImage(Reference.RESOURCE_LOCATION + "img/cursor.gif");
 		frame.add(game);
 		frame.setTitle(TITLE);
 		frame.setIconImage(icon);
+		/**
+		 * Replacing Cursor with new Frame Cursor
+		 */
+		frame.setCursor(toolkit.createCustomCursor(cursor, new Point(frame.getX(), frame.getY()), "cursor"));
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setFocusable(true);
