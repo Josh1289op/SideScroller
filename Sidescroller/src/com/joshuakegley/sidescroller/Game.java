@@ -30,7 +30,7 @@ import com.joshuakegley.sidescroller.utils.AudioPlayer;
 import com.joshuakegley.sidescroller.utils.ResourceLoader;
 
 /**
- * @Class Game
+ * @Class Game   
  */
 @SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
