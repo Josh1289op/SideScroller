@@ -9,12 +9,11 @@ package com.joshuakegley.sidescroller.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import com.joshuakegley.sidescroller.Controller;
 import com.joshuakegley.sidescroller.core.CoreObject;
-import com.joshuakegley.sidescroller.gfx.Texture;
+import com.joshuakegley.sidescroller.gfx.Textures;
 import com.joshuakegley.sidescroller.libs.Identities;
 import com.joshuakegley.sidescroller.objects.Block;
 
@@ -34,8 +33,12 @@ public class Player extends CoreObject {
 	private boolean jumping = false;
 	
 	
-	public Player(int x, int y, int width, int height, int id, Texture tex) {
-		super(x, y, width, height, id, tex);
+
+
+	public Player(int x, int y, int id, Textures tex) {
+		super(x, y, id, tex);
+		this.width = 32;
+		this.height = 70;
 	}
 
 
@@ -54,7 +57,7 @@ public class Player extends CoreObject {
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(x, y, 30, 70);
+		g.fillRect(x, y, width, height);
 	}
 
 	private void checkCollision(){
@@ -65,6 +68,7 @@ public class Player extends CoreObject {
 				if(getBottomBounds().intersects(block.getTopBounds())){
 					velY = 0;
 					y = block.getY() - height;
+					jumping = false;
 				}
 			}
 		}
@@ -78,8 +82,22 @@ public class Player extends CoreObject {
 	}
 	
 	
-	public Rectangle getBottomBounds(){
-		return new Rectangle(x, y + (height/2), 30, height/2);
-	}
+
 	
+	/**
+	 * 
+	 * @return true if jumping/false if not
+	 */
+	public boolean isJumping() {
+		return jumping;
+	}
+
+	/**
+	 * 
+	 * @param jumping the boolean set the jumping state.
+	 */
+	public void setJumping(boolean jumping) {
+		this.jumping = jumping;
+	}
+
 }

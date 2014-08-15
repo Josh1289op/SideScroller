@@ -15,7 +15,7 @@ import com.joshuakegley.sidescroller.utils.SpriteSheet;
 /**
  * @Class Texture
  */
-public class Texture {
+public class Textures {
 
 	private SpriteSheet sheetTest;
 	
@@ -25,14 +25,14 @@ public class Texture {
 	public BufferedImage blockMetal;
 	public BufferedImage blockStone;
 	
-	public Texture(){
+	public Textures(){
 		sheetTest = new SpriteSheet(Images.spritesheetTest, 32);
 	
 		initTextures();
 	}
 	
 	private void initTextures(){
-		blockStone = sheetTest.getSprite(1, 1);
+		blockStone = sheetTest.getSprite(5, 2);
 		blockMetal = sheetTest.getSprite(2, 1);
 		
 	}

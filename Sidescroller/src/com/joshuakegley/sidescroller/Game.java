@@ -23,7 +23,7 @@ import javax.swing.JFrame;
 import com.joshuakegley.sidescroller.entity.Player;
 import com.joshuakegley.sidescroller.enums.GameState;
 import com.joshuakegley.sidescroller.gfx.Renderer;
-import com.joshuakegley.sidescroller.gfx.Texture;
+import com.joshuakegley.sidescroller.gfx.Textures;
 import com.joshuakegley.sidescroller.input.KeyInput;
 import com.joshuakegley.sidescroller.input.MouseInput;
 import com.joshuakegley.sidescroller.libs.Audio;
@@ -58,7 +58,7 @@ public class Game extends Canvas implements Runnable {
 	private Renderer gfx; // Render Object
 	private Menu menu; //Menu Object
 	private Controller controller = new Controller(); //Control all game objects
-	private Texture tex;
+	private Textures tex;
 	
 	
 	public static Game getInstance(){
@@ -77,7 +77,7 @@ public class Game extends Canvas implements Runnable {
 		ResourceLoader.loadImages(); //Loads our images and sprites
 		ResourceLoader.loadFonts(); //Loads our fonts
 		ResourceLoader.loadSounds(); //Loads Sounds
-		tex = new Texture();
+		tex = new Textures();
 		menu = new Menu();
 		gfx = new Renderer();
 		MouseInput mouse = new MouseInput();
@@ -91,7 +91,7 @@ public class Game extends Canvas implements Runnable {
 		}
 		
 		//PLAYER OBJECT!
-		Controller.addObject(new Player(100,100,30, 70, Identities.PLAYER, tex));
+		Controller.addObject(new Player(100,100, Identities.PLAYER, tex));
 		this.addKeyListener(new KeyInput());
 		
 		AudioPlayer.playMusic(Audio.MUSIC_THEME);//plays theme

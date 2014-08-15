@@ -8,8 +8,9 @@
 package com.joshuakegley.sidescroller.core;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
-import com.joshuakegley.sidescroller.gfx.Texture;
+import com.joshuakegley.sidescroller.gfx.Textures;
 
 /**
  * @Class CoreObject
@@ -19,33 +20,41 @@ public abstract class CoreObject {
 	protected int x, y, velX, velY;
 	protected int id; 
 	
-	protected int width;
-	protected int height;
+	protected int width = 32;
+	protected int height = 32;
 	
-	protected Texture tex;
+	protected Textures tex;
 	
-	public CoreObject(int x, int y, int id, Texture tex){
+	public CoreObject(int x, int y, int id, Textures tex){
 		this.x = x;
 		this.y = y;
 		this.id = id;
 		this.tex = tex;
-		width = 32;
-		height = 32;
-	}
-	
-	public CoreObject(int x, int y, int width, int height, int id, Texture tex){
-		this.x = x;
-		this.y = y;
-		this.id = id;
-		this.tex = tex;
-		this.width = width;
-		this.height = height;
-	}
-	
+	}	
 	
 	public abstract void tick();
 	public abstract void render(Graphics g);
 
+	
+	public Rectangle getTopBounds(){	
+		return new Rectangle(x, y, width, 6);
+	}
+	
+	public Rectangle getBottomBounds(){
+		return new Rectangle(x, y + (height - 6), width, 6);
+	}
+	
+	public Rectangle getRightBounds(){
+		return new Rectangle(x + (width -6), y, 6, height);
+	}
+	
+	public Rectangle getLeftBounds(){
+		return new Rectangle(x, y, 6, height);
+	}
+	
+	
+	
+	
 	/**
 	 * Gets the x value
 	 * @return the x coordinate
@@ -74,6 +83,14 @@ public abstract class CoreObject {
 	 */
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
 	}
 
 	/**

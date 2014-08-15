@@ -39,12 +39,10 @@ public class KeyInput extends KeyAdapter {
 		
 		switch(Game.state){
 		case GAME:
-			if(key == KeyEvent.VK_W){
-				player.setVelY(-5);
+			if(key == KeyEvent.VK_W && !player.isJumping()){
+				player.setVelY(-23);
+				player.setJumping(true);
 			}
-			//if(key == KeyEvent.VK_S){
-			//	player.setVelY(5);
-			//}
 			if(key == KeyEvent.VK_A){
 				player.setVelX(-5);
 				keyDown[0] = true;
