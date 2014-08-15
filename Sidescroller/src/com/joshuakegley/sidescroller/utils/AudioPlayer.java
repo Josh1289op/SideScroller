@@ -21,6 +21,7 @@ import com.joshuakegley.sidescroller.libs.Reference;
  */
 public class AudioPlayer {
 	
+	public static boolean hasPlayedAudio = false;
 	
 	private static Map<String, Sound> soundMap = new HashMap<String, Sound>();
 	private static Map<String, Music> musicMap = new HashMap<String, Music>();

@@ -13,6 +13,8 @@ import java.awt.event.MouseEvent;
 
 import com.joshuakegley.sidescroller.Game;
 import com.joshuakegley.sidescroller.enums.GameState;
+import com.joshuakegley.sidescroller.libs.Audio;
+import com.joshuakegley.sidescroller.utils.AudioPlayer;
 
 /**
  * @Class MouseInput
@@ -50,10 +52,13 @@ public class MouseInput extends MouseAdapter {
 				break;
 			case MENU:
 				if(rect.intersects(Game.getInstance().getMenu().play)){
+					AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
 					Game.state = GameState.GAME;
 				}else if(rect.intersects(Game.getInstance().getMenu().options)){
+					AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
 					Game.state = GameState.GAME;
 				}else if(rect.intersects(Game.getInstance().getMenu().quit)){
+					AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
 					System.exit(1);
 				}
 				break;
@@ -70,23 +75,34 @@ public class MouseInput extends MouseAdapter {
 		}
 	}
 	
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		
-		pressed = true;
-	}
-	
-	public void mouseReleased(MouseEvent e) {
-		pressed = false;
-	}
-	
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		MOUSE_X = e.getX();
 		MOUSE_Y = e.getY();
 		MOUSE = new Rectangle(MOUSE_X, MOUSE_Y, 1, 1);
-	}
 
+		
+		switch(Game.state){
+		case GAME:
+			break;
+		case MENU:
+			if((MOUSE.intersects(Game.getInstance().getMenu().play) || MOUSE.intersects(Game.getInstance().getMenu().options) || MOUSE.intersects(Game.getInstance().getMenu().quit)) && !AudioPlayer.hasPlayedAudio){
+				AudioPlayer.hasPlayedAudio = true;
+				AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
+			}else if(!(MOUSE.intersects(Game.getInstance().getMenu().play) || MOUSE.intersects(Game.getInstance().getMenu().options) || MOUSE.intersects(Game.getInstance().getMenu().quit)) && AudioPlayer.hasPlayedAudio){
+				AudioPlayer.hasPlayedAudio = false;
+			}
+			break;
+		case OPTION:
+			break;
+		case PAUSE:
+			break;
+		default:
+			break;
+		
+		}
+			
+
+	}
 }

@@ -11,10 +11,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import com.joshuakegley.sidescroller.Game;
-import com.joshuakegley.sidescroller.libs.Audio;
 import com.joshuakegley.sidescroller.libs.Images;
 import com.joshuakegley.sidescroller.libs.Reference;
-import com.joshuakegley.sidescroller.utils.AudioPlayer;
 import com.joshuakegley.sidescroller.utils.Button;
 
 /**
