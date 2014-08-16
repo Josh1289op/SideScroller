@@ -15,6 +15,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
 import com.joshuakegley.sidescroller.libs.Reference;
+import com.joshuakegley.sidescroller.screens.LoadScreen;
 
 /**
  * @Class AudioPlayer
@@ -28,6 +29,7 @@ public class AudioPlayer {
 
 	
 	public static void addSound(String key, String path){
+		LoadScreen.setMessage("Loading Sounds From " + Reference.SOUND_LOCATION);
 		try {
 			soundMap.put(key, new Sound(Reference.SOUND_LOCATION + path));
 		} catch (SlickException e) {
@@ -37,6 +39,7 @@ public class AudioPlayer {
 	}
 	
 	public static void addMusic(String key, String path){
+		LoadScreen.setMessage("Loading Music From " + Reference.SOUND_LOCATION);
 		try {
 			musicMap.put(key, new Music(Reference.SOUND_LOCATION + path));
 		} catch (SlickException e) {

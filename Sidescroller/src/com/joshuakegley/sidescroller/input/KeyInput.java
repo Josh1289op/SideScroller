@@ -40,7 +40,7 @@ public class KeyInput extends KeyAdapter {
 		switch(Game.state){
 		case GAME:
 			if((key == KeyEvent.VK_W || key == KeyEvent.VK_UP || key == KeyEvent.VK_SPACE) && !player.isJumping()){
-				player.setVelY(-13);
+				player.setVelY(-9);
 				player.setJumping(true);
 			}
 			if((key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT)){

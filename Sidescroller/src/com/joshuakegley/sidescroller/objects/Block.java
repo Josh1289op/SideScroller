@@ -9,7 +9,10 @@ public class Block extends CoreObject {
 
 	public Block(float x, float y, int id, BufferedImage image) {
 		super(x, y, id, image);
+		this.image = image;
 		this.setSize(32, 32);
+		
+		
 		
 		
 	}

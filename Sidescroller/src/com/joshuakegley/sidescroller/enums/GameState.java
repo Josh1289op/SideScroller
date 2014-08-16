@@ -15,6 +15,6 @@ public enum GameState {
 	MENU,
 	GAME,
 	OPTION,
-	PAUSE;
-
+	PAUSE,
+	LOADING;
 }

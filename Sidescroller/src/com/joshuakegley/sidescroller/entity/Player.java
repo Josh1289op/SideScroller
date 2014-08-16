@@ -93,6 +93,9 @@ public class Player extends CoreObject {
 					velY = 0;
 					y = obj.getY() - height;
 					jumping = false;
+					falling = false;
+				}else{
+					falling = true;
 				}
 				if(getTopBounds().intersects(obj.getBottomBounds())){
 					fall();

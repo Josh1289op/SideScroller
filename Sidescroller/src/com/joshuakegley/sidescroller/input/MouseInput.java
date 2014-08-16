@@ -56,13 +56,13 @@ public class MouseInput extends MouseAdapter {
 			case MENU:
 				if(rect.intersects(menu.play)){
 					AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
+					Game.getInstance().levelOne.loadLevel();
 					Game.state = GameState.GAME;
 				}else if(rect.intersects(menu.options)){
 					AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
 					Game.state = GameState.GAME;
 				}else if(rect.intersects(menu.quit)){
 					AudioPlayer.playSound(Audio.SOUND_BUTTONCLICK);
-					System.exit(1);
 				}
 				break;
 			case OPTION:
@@ -78,6 +78,17 @@ public class MouseInput extends MouseAdapter {
 		}
 	}
 	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		pressed = false;
+		MOUSE = new Rectangle(e.getX(), e.getY(), 1, 1);
+		
+		if(Game.state == GameState.MENU){
+			if(MOUSE.intersects(menu.quit)){
+				Game.exit();
+			}
+		}
+	}
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {

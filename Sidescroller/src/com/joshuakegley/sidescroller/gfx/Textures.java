@@ -20,6 +20,9 @@ public class Textures {
 	
 	//blocksheet
 	private SpriteSheet sheetTest;
+	
+	private SpriteSheet rockyBlockSheet;
+	
 	//playersheet
 	private SpriteSheet playerSheet;
 	
@@ -39,10 +42,22 @@ public class Textures {
 	public BufferedImage blockMetal;
 	public BufferedImage blockStone;
 	
+	
+	public BufferedImage rockyBlock;
+	public BufferedImage rockyBlockTop;
+	public BufferedImage rockyBlockTopRight;
+	public BufferedImage rockyBlockTopLeft;
+	public BufferedImage rockyBlockTopRightLeft;
+		
+	
+	
+	
+	
+	
 	public Textures(){
 		sheetTest = new SpriteSheet(Images.spritesheetTest, 32);
 		playerSheet = new SpriteSheet(Images.spritesheetPlayer, 50);
-	
+		rockyBlockSheet = new SpriteSheet(Images.rocky_blocks, 32);
 		initTextures();
 	}
 	
@@ -50,6 +65,18 @@ public class Textures {
 		blockStone = sheetTest.getSprite(1, 1);
 		blockMetal = sheetTest.getSprite(6, 1);
 		
+		rockyBlock = rockyBlockSheet.getSprite(1, 1);;
+		rockyBlockTop = rockyBlockSheet.getSprite(2, 1);
+		rockyBlockTopRight = rockyBlockSheet.getSprite(3, 1);;
+		rockyBlockTopLeft = rockyBlockSheet.getSprite(4, 1);;
+		rockyBlockTopRightLeft = rockyBlockSheet.getSprite(1,2);;
+		/*
+		 * ROCKY BLOCKS
+		 */
+		
+		/*
+		 * PLAYER MOVEMENT/SPRITES
+		 */
 		playerStandingRight = playerSheet.getSprite(1, 1);
 		playerStandingLeft = playerSheet.getSprite(2, 1);
 

@@ -22,8 +22,18 @@ public class Images {
 	 */
 	public static BufferedImage spritesheetTest;
 	public static BufferedImage spritesheetPlayer;
-	
 
+
+	public static BufferedImage rockyBlocksHD;
+	public static BufferedImage rocky_blocks;
 	
+	
+	
+	/**
+	 * Level 1
+	 * 
+	 */
+	
+	public static BufferedImage levelOne;
 	
 }

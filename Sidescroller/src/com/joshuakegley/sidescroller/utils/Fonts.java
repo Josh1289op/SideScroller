@@ -13,6 +13,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import com.joshuakegley.sidescroller.libs.Reference;
+import com.joshuakegley.sidescroller.screens.LoadScreen;
 
 /**
  * @Class Fonts
@@ -24,6 +25,7 @@ public class Fonts {
 	private static String fontPath;
 	
 	public Fonts(String filePath){
+		LoadScreen.setMessage("Loading Fonts From " + Reference.FONT_LOCATION);
 		Fonts.fontPath = Reference.FONT_LOCATION + filePath;
 		registerFont();
 	}

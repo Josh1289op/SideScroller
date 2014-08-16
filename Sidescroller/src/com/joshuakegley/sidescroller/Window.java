@@ -3,6 +3,8 @@ package com.joshuakegley.sidescroller;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
@@ -35,7 +37,14 @@ public class Window {
 		 */
 		frame.setCursor(toolkit.createCustomCursor(cursor, new Point(frame.getX(), frame.getY()), "cursor"));
 		frame.setSize(Game.WIDTH, Game.HEIGHT);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.addWindowListener(
+				new WindowAdapter(){
+					public void windowClosing(WindowEvent e){
+						Game.exit();
+					}
+				});
+		
 		frame.setFocusable(true);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
