@@ -7,12 +7,13 @@
  */
 package com.joshuakegley.sidescroller.entity;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
 import com.joshuakegley.sidescroller.Game;
 import com.joshuakegley.sidescroller.core.CoreObject;
+import com.joshuakegley.sidescroller.enums.Direction;
+import com.joshuakegley.sidescroller.gfx.Animation;
 import com.joshuakegley.sidescroller.gfx.Textures;
 import com.joshuakegley.sidescroller.objects.Block;
 
@@ -30,12 +31,21 @@ public class Player extends CoreObject {
 	//is the player jumping?
 	private boolean jumping = false;
 	
+	private boolean moving = false;
+	
+	private Animation animeRight;
+	private Animation animeLeft;
+	
+	private Direction direction = Direction.RIGHT;
+	
 	
 
 
 	public Player(float x, float y, int id, Textures tex) {
 		super(x, y, id, tex);
-		this.setSize(32, 70);
+		this.setSize(50, 50);
+		animeRight = new Animation(3, tex.playerRight);
+		animeLeft = new Animation(3, tex.playerLeft);
 	}
 
 
@@ -47,14 +57,32 @@ public class Player extends CoreObject {
 		//makes fall
 		fall();
 		checkCollision();
-		
+		if(moving){
+			if(direction == Direction.RIGHT){
+				animeRight.runAnimation();
+			}else if(direction == Direction.LEFT){
+				animeLeft.runAnimation();
+			}
+		}
 	}
 
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.WHITE);
-		g.fillRect((int) x, (int) y, width, height);
+		if(!moving){
+			if(direction == Direction.RIGHT){
+				g.drawImage(tex.playerStandingRight,(int) x,(int) y, null);
+			}else if(direction == Direction.LEFT){
+				g.drawImage(tex.playerStandingLeft,(int) x,(int) y, null);
+			}
+		}else{
+			if(direction == Direction.RIGHT){
+				animeRight.drawAnimation(g, x, y);
+			}else if(direction == Direction.LEFT){
+				animeLeft.drawAnimation(g, x, y);
+
+			}
+		}
 	}
 
 	private void checkCollision(){
@@ -112,4 +140,21 @@ public class Player extends CoreObject {
 		this.jumping = jumping;
 	}
 
+
+	public boolean isMoving() {
+		return moving;
+	}
+
+
+	public void setMoving(boolean moving) {
+		this.moving = moving;
+	}
+	
+	public void setDirection(Direction direction){
+		this.direction = direction;	
+	}
+
+	public Direction getDirection(){
+		return direction;
+	}
 }

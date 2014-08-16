@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import com.joshuakegley.sidescroller.Game;
 import com.joshuakegley.sidescroller.core.CoreObject;
 import com.joshuakegley.sidescroller.entity.Player;
+import com.joshuakegley.sidescroller.enums.Direction;
 import com.joshuakegley.sidescroller.libs.Identities;
 
 /**
@@ -44,10 +45,14 @@ public class KeyInput extends KeyAdapter {
 			}
 			if((key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT)){
 				player.setVelX(-5);
+				player.setMoving(true);
+				player.setDirection(Direction.LEFT);
 				keyDown[0] = true;
 			}
 			if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
 				player.setVelX(5);
+				player.setMoving(true);
+				player.setDirection(Direction.RIGHT);
 				keyDown[1] = true;
 			}
 			break;
@@ -72,18 +77,13 @@ public class KeyInput extends KeyAdapter {
 		
 		switch(Game.state){
 		case GAME:
-			if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP || key == KeyEvent.VK_SPACE){
-				player.setVelY(0);
-			}
-			//DOWN MOVEMENT REMOVED, NO DOWN NEEDED2
-			//if(key == KeyEvent.VK_S){
-			//	player.setVelY(0);
-			//}
 			if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){
 				keyDown[0] = false;
+				player.setMoving(false);
 			}
 			if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
 				keyDown[1] = false;
+				player.setMoving(false);
 			}
 			if(keyDown[0] && !keyDown[1]){
 				player.setVelX(-5);
