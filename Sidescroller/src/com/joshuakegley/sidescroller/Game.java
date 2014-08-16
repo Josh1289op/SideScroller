@@ -30,6 +30,7 @@ import com.joshuakegley.sidescroller.screens.LoadScreen;
 import com.joshuakegley.sidescroller.screens.Menu;
 import com.joshuakegley.sidescroller.utils.AudioPlayer;
 import com.joshuakegley.sidescroller.utils.ResourceLoader;
+import com.joshuakegley.sidescroller.utils.Updater;
 import com.joshuakegley.sidescroller.utils.files.TextFile;
 import com.joshuakegley.sidescroller.world.Level;
 
@@ -137,13 +138,16 @@ public class Game extends Canvas implements Runnable {
 			LoadScreen.loadMore();
 			return;
 		case 8:
+			Updater.checkForUpdate(false);
+			counter++;
+			LoadScreen.loadMore();
+			return;
+		case 9:
 			counter++;
 			LoadScreen.loadMore();
 			state = GameState.MENU;
 			AudioPlayer.playMusic(Audio.MUSIC_THEME);//plays theme
-
 			return;
-			
 		}
 		
 	}
