@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import com.joshuakegley.sidescroller.core.CoreObject;
 
 /**
- * @Class Controller
+ * @Class Controller 
  */
 public class Controller {
 
